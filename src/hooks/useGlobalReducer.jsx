@@ -18,10 +18,6 @@ export function StoreProvider({ children }) {
         contactServices.fetchContacts(dispatch);
       }, [dispatch]);
 
-      // useEffect(() => {
-      //   contactServices.fetchFiveContacts(dispatch);
-      // }, [dispatch]);
-
     // Provide the store and dispatch method to all child components.
     return <StoreContext.Provider value={{ store, dispatch }}>
         {children}

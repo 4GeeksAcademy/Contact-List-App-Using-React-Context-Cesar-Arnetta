@@ -13,8 +13,6 @@ export const Demo = () => {
   const navigate = useNavigate();
 
 
-  
-
   const [contact, setContact] = useState({
     name: '',
     email: '',
@@ -24,6 +22,25 @@ export const Demo = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    // Validación para el campo "Name": Solo letras y espacios
+    if (name === "name" && /[^a-zA-Z ]/g.test(value)) {
+      return;
+    }
+
+    // Validación para el campo "Phone": Solo números y formato 123-456-7890
+    if (name === "phone" && /[^0-9]/g.test(value) && value !== "") {
+      return;
+    }
+
+    // Validación para el campo "Email": Correo electrónico válido (no vamos a restringir la entrada, solo validar)
+    if (name === "email") {
+
+    }
+
+    // Validación para el campo "Address": Permite letras, números y algunos caracteres especiales
+    if (name === "address" && /[^a-zA-Z0-9\s,.-]/g.test(value)) {
+      return;
+    }
     setContact((prevState) => ({
       ...prevState,
       [name]: value,
@@ -47,17 +64,55 @@ export const Demo = () => {
     navigate('/');
   };
 
-  
+
 
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
         <div className="container">
           <ul className="list-group">
-            <TextField id="outlined-basic" label="name" variant="outlined" onChange={handleChange} name="name" value={contact.name} />
-            <TextField id="outlined-basic" label="phone" variant="outlined" onChange={handleChange} name="phone" value={contact.phone} />
-            <TextField id="outlined-basic" label="email" variant="outlined" onChange={handleChange} name="email" value={contact.email} />
-            <TextField id="outlined-basic" label="address" variant="outlined" onChange={handleChange} name="address" value={contact.address} />
+            <TextField
+              label="Name"
+              variant="outlined"
+              name="name"
+              value={contact.name}
+              onChange={handleChange}
+              fullWidth
+              required
+              helperText="Solo letras y espacios"
+            />
+            <TextField
+              label="Phone"
+              variant="outlined"
+              name="phone"
+              value={contact.phone}
+              onChange={handleChange}
+              fullWidth
+              required
+              type="tel"
+              helperText="Formato: 123-456-7890"
+            />
+            <TextField
+              label="Email"
+              variant="outlined"
+              name="email"
+              value={contact.email}
+              onChange={handleChange}
+              fullWidth
+              required
+              type="email"
+              helperText="Ingrese un correo electrónico válido"
+            />
+            <TextField
+              label="Address"
+              variant="outlined"
+              name="address"
+              value={contact.address}
+              onChange={handleChange}
+              fullWidth
+              required
+              helperText="Puede incluir números, letras, espacios y caracteres especiales como coma y punto"
+            />
           </ul>
           <br />
           <div className="text-center">

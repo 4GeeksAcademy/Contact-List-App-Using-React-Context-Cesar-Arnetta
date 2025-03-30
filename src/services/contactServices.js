@@ -4,12 +4,12 @@ const baseUrl = "https://playground.4geeks.com/contact/agendas/"
 
 export const contactServices = {
 
-    // get funtions
+    // GET funtions
 
     getContact: async () => {
 
         try {
-         
+
             const request = await fetch(`${baseUrl}cesar_arnetta`, {
                 headers: {
                     accept: 'application/json'
@@ -24,46 +24,20 @@ export const contactServices = {
         }
     },
 
-    fetchContacts: async (dispatch, ) => {
+    fetchContacts: async (dispatch,) => {
 
         try {
             const contacts = await contactServices.getContact();
-       
-            dispatch({ type: 'getContact', contacts : contacts });
+
+            dispatch({ type: 'getContact', contacts: contacts });
             console.log(contacts);
-            
+
         } catch (error) {
             console.log(error);
         }
     },
 
-//     getFisrtFiveContacts: async () => {
-//         try {
-//             const request = await fetch(`${baseUrl}?limit=5`, {
-//                 headers: {
-//                     accept: 'application/json'
-//                 }
-//             })
-//             const response = await request.json()
-//             console.log('API response:', response)
-//             console.log(response)
-//             const sortedContacts = response.agendas.sort((a, b) => b.id - a.id);
-//             return sortedContacts
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     },
-
-//     fetchFiveContacts: async (dispatch) => {
-
-//         try {
-//             const fiveContacts = await contactServices.getFisrtFiveContacts();
-//             dispatch({ type: 'getFiveContacts', fiveContacts : fiveContacts});
-//         } catch (error) {
-// console.log(error);
-
-//         }
-//     },
+// POST funtion
 
     createContact: async (contact) => {
         try {
@@ -89,6 +63,26 @@ export const contactServices = {
         }
     },
 
+    createAgenda: async (user) => {
+        try {
+            const request = await fetch(`${baseUrl}${user}`, {
+                method: "POST",
+                headers: {
+                    accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            });
+            const response = await request.json()
+            console.log('API response:', response)
+            console.log(response)
+            return response
+        } catch (error) {
+
+        }
+    },
+
+    // DELETE funtion
+
     deleteContact: async (id) => {
         try {
             const request = await fetch(`${baseUrl}cesar_arnetta/contacts/${id}`, {
@@ -105,6 +99,26 @@ export const contactServices = {
 
         }
     },
+
+    deleteAgenda: async (user) => {
+        try {
+            const request = await fetch(`${baseUrl}${user}?tags=Agenda%20operations&summary=Delete%20Agenda.&description=Deletes%20a%20specific%20agenda%20from%20the%20database.`, {
+                method: "DELETE",
+                headers: {
+                    accept: 'application/json'
+                }
+            })
+            const response = await request.json()
+            console.log('API response:', response)
+            console.log(response)
+            return response
+        } catch (error) {
+
+        }
+    },
+
+    // PUT funtion
+
     editContact: async (id, contact) => {
         try {
             const request = await fetch(`${baseUrl}cesar_arnetta/contacts/${id}`, {
@@ -128,6 +142,5 @@ export const contactServices = {
 
         }
     },
-
 }
 
