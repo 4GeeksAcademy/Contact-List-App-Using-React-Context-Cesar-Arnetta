@@ -11,7 +11,7 @@ const Card = ({ name, phone, email, address, id }) => {
     const handleDelete = async (e) => {
         try {
             const idContact = id;
-            const deleteContact = await contactServices.deleteContact(idContact, selectedAgenda.slug);
+            const deleteContact = await contactServices.deleteContact(idContact);
             dispatch({ type: 'deleteContact', id: id });
         } catch (error) {
             console.error('Error al agregar contacto:', error);
