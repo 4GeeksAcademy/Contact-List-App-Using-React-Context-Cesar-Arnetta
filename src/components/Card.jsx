@@ -66,7 +66,7 @@ const Card = ({ name, phone, email, address, id }) => {
             };
             console.log(editContact.id);
 
-            const contactEdited = await contactServices.editContact(editContact.id, editContact, selectedAgenda.slug);
+            const contactEdited = await contactServices.editContact(editContact.id, editContact);
             dispatch({ type: 'contactEdited', contactEdited: contactEdited });
         } catch (error) {
             console.error('Error al agregar contacto:', error);
