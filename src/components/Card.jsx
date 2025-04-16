@@ -6,7 +6,6 @@ import { TextField } from "@mui/material";
 const Card = ({ name, phone, email, address, id }) => {
 
     const { store, dispatch } = useGlobalReducer();
-    const selectedAgenda = store.selectedAgenda;
 
     const handleDelete = async (e) => {
         try {
@@ -99,6 +98,7 @@ const Card = ({ name, phone, email, address, id }) => {
                                     name="phone"
                                     value={contact.phone}
                                     onChange={handleChange}
+                                    placeholder={phone}
                                     fullWidth
                                     required
                                     type="tel"
@@ -140,7 +140,8 @@ const Card = ({ name, phone, email, address, id }) => {
                         )}
                     </div>
                     <div className="col-4 d-flex justify-content-end align-items-start">
-                        <button className="btn btn-success" onClick={() => setEditing(true)}>Edit contact</button>
+                        <button className="btn btn-success" onClick={() => {setContact({ name, phone, email, address }); setEditing(true)}}>Edit contact</button>
+                        {/* Al hacer almacenar localmente los valores inciales del contact, estos cumplen con la estructura indicada en el proyecto para las ediciones contact.key  */}
                         <button className="btn btn-danger" onClick={handleDelete}>Delete contact</button>
                     </div>
                 </div>

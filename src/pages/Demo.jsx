@@ -64,8 +64,6 @@ export const Demo = () => {
     navigate('/');
   };
 
-
-
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>

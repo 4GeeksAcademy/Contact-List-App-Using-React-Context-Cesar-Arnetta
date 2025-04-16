@@ -10,7 +10,7 @@ export const Navbar = () => {
 	const deleteAgenda = async (user) => {
 		try {
 			const user = "cesar_arnetta";;
-			const deleteContact = await contactServices.deleteAgenda(user);
+			const deleteAgenda = await contactServices.deleteAgenda(user);
 			dispatch({ type: 'deleteAgenda' });
 			dispatch({ type: 'clearContacts' });
 		} catch (error) {
@@ -21,7 +21,7 @@ export const Navbar = () => {
 	const createAgenda = async (user) => {
 		try {
 			const user = "cesar_arnetta";;
-			const deleteContact = await contactServices.createAgenda(user);
+			const createAgenda = await contactServices.createAgenda(user);
 			dispatch({ type: 'createAgenda', slug : user });
 		} catch (error) {
 
@@ -33,9 +33,6 @@ export const Navbar = () => {
 			<div className="container">
 				{store.slug !== "" ? (<><p>{store.slug}</p> <button className="btn btn-danger" onClick={deleteAgenda}>Delete agenda</button></>) :
 					(<><p>There is not agenda created</p> <button className="btn btn-success" onClick={createAgenda}>Create agenda</button></>)}
-
-
-
 				<div className="ml-auto">
 					<Link to="/demo">
 						<button className="btn btn-success">Add new contact</button>

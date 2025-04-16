@@ -1,4 +1,3 @@
-import { Contacts } from "@mui/icons-material";
 
 const baseUrl = "https://playground.4geeks.com/contact/agendas/"
 
@@ -7,9 +6,7 @@ export const contactServices = {
     // GET funtions
 
     getContact: async () => {
-
         try {
-
             const request = await fetch(`${baseUrl}cesar_arnetta`, {
                 headers: {
                     accept: 'application/json'

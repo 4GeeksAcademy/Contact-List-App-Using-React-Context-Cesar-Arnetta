@@ -10,7 +10,7 @@ export const Home = () => {
 
 	 const [loading, setLoading] = useState(true);
 
-//Carga inicial de agenda, sino estuviese creada
+//Carga inicial de la agenda, sino estuviese creada
 
 	 useEffect(() => {
 	   const fetchData = async () => {
